@@ -14,24 +14,24 @@ Features
 
 ## Setup Instructions
 
-1.Create virtual environment and activate
-Terminal/Command Prompt
+1.Create virtual environment and activate: 
+Terminal/Command Prompt:
 python -m venv venv
 venv\Scripts\activate  # for Windows
 
 
-2.Install dependencies
-Terminal
+2.Install dependencies: 
+Terminal: 
 pip install -r requirements.txt
 
 
-3.Ensure dataset exists
+3.Ensure dataset exists:
 Place the bin history CSV file here:
 "dataset/bin_history.csv"
 
 
-4.Run the application
-Terminal
+4.Run the application:
+Terminal:
 python app.py
 
 
@@ -85,3 +85,4 @@ Content-Type: application/json
   "lon": 73.85,
   "fill_level": 87
 }
+
