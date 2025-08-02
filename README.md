@@ -5,7 +5,7 @@ The Smart Bin Route Optimization System is an AI-powered waste management web ap
 
 Key Features
 1. Stores bin location and fill level in an SQLite database.
-2. Predictive Fill-Level Forecasting:Uses Linear Regression to forecast next-day bin fill levels based on historical data. Dynamically suggests pickup schedules based on predicted levels (e.g., 08:00 AM if fill ≥ 90%).
+2. Predictive Fill-Level Forecasting:Uses Linear Regression to forecast next-day bin fill levels based on historical data. Dynamically suggests pickup schedules based on predicted levels (e.g.fill ≥ 90%).
 3. Route Optimization: Applies Traveling Salesman Problem (TSP) using networkx and geopy to calculate optimal collection routes for bins exceeding a user-defined threshold.
 4. Interactive Visualization Dashboard: Displays: Bin Alerts for high-fill bins, Predicted fill levels and pickup times, Color-coded map (green, orange, red) using Folium + Leaflet for bin status, Optimized path plotted with polyline route steps, Generates downloadable reports in CSV, Excel, and PDF formats.
 
