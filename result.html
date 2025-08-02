@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Page title -->
+    <title>Smart Bin Map Dashboard</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Inline CSS styling -->
+    <style>
+        /* Global body styles */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        /* Main container */
+        .container {
+            padding: 20px 40px;
+        }
+
+        /* Headings */
+        h1, h2 {
+            color: #003366;
+        }
+
+        /* List styling */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        /* Section spacing */
+        .section {
+            margin-top: 30px;
+        }
+
+        /* Download button links */
+        .download-links a {
+            display: inline-block;
+            margin-right: 15px;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Download button hover effect */
+        .download-links a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Embedded map iframe */
+        iframe {
+            width: 50%;
+            height: 400px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Back to home link */
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Timestamp styling */
+        .timestamp {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main container for report content -->
+<div class="container">
+
+    <!-- Dashboard Title -->
+    <h1>Smart Bin Route Optimization Report</h1>
+
+    <!-- Display current timestamp passed from Flask -->
+    <p class="timestamp">Last updated: {{ now.strftime('%I:%M:%S %p') }}</p>
+
+    <!-- Alert section if bins exceed threshold -->
+    <div class="section">
+        {% if alerts %}
+        <div class="alert-section">
+            <h3>🚨 Bin Alerts</h3>
+            <ul>
+                {% for alert in alerts %}
+                <li>{{ alert }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- List of bins that need collection -->
+        <h2>Bins to Collect</h2>
+        {% if bins %}
+            <ul>
+                {% for b in bins %}
+                    <li>{{ b.id }} – {{ b.current_fill }}%</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No bins exceed the threshold.</p>
+        {% endif %}
+    </div>
+
+    <!-- Optimized collection route based on algorithm -->
+    <div class="section">
+        <h2>Optimized Collection Route</h2>
+        {% if route %}
+            <ol>
+                {% for bin_id in route %}
+                    <li>{{ bin_id }}</li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>No optimized route available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Download options for CSV and Excel reports -->
+    <div class="section">
+        <h2>Download Reports</h2>
+        <div class="download-links">
+            <a href="/download/csv"><i class="fa-solid fa-file-csv"></i> Download CSV</a>
+            <a href="/download/excel"><i class="fa-solid fa-file-excel"></i> Download Excel</a>
+        </div>
+    </div>
+
+    <!-- Prediction for next day fill levels -->
+    <div class="section">
+        <h2>Predicted Fill Levels (Next Day)</h2>
+        {% if predictions %}
+        <ul>
+            {% for bin_id, level in predictions.items() %}
+            <li>{{ bin_id }} — {{ level }}%</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No predictions available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Map visualization loaded from saved HTML -->
+    <div class="section">
+        <h2>Map Visualization</h2>
+        <iframe src="/static/map.html"></iframe>
+    </div>
+
+    <!-- Suggested pickup time based on prediction logic -->
+    <h2>Pickup Schedule (Based on Prediction)</h2>
+    <ul>
+        {% for bin_id, time in schedule.items() %}
+        <li>{{ bin_id }} – Suggested Time: {{ time }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Link to return to index page -->
+    <a class="back-link" href="/">&larr; Back to Dashboard</a>
+</div>
+
+</body>
+</html>

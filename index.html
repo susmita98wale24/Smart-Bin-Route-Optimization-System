@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Define character encoding -->
+    <meta charset="UTF-8">
+    
+    <!-- Set the title of the web page -->
+    <title>Smart Bin Threshold Input</title>
+    
+    <!-- Font Awesome icons (used for button icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Internal CSS Styling -->
+    <style>
+        /* Basic body layout and centering */
+        body {
+            font-family: 'Segoe UI', sans-serif;  /* Font style */
+            margin: 0;
+            padding: 0;
+            background-color: #eef3f8;  /* Light background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;  /* Full height viewport */
+        }
+
+        /* Container box for form */
+        .form-container {
+            background-color: #fff;  /* White box */
+            padding: 30px 40px;
+            border-radius: 10px;  /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+            text-align: center;
+        }
+
+        /* Heading style */
+        h1 {
+            margin-bottom: 20px;
+            color: #003366;  /* Dark blue */
+        }
+
+        /* Input box style */
+        form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        /* Submit button style */
+        form button {
+            margin-top: 20px;
+            background-color: #007bff;  /* Bootstrap blue */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Button hover effect */
+        form button:hover {
+            background-color: #0056b3;  /* Darker blue on hover */
+        }
+
+        /* Footer text styling */
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Main form container -->
+<div class="form-container">
+    <!-- Page title -->
+    <h1>Smart Bin Threshold Input</h1>
+
+    <!-- Threshold submission form -->
+    <form method="POST">
+        <!-- Label for input box -->
+        <label for="threshold">Enter Fill Level Threshold (%):</label>
+
+        <!-- Number input field (0–100) required -->
+        <input type="number" name="threshold" id="threshold" min="0" max="100" required>
+
+        <!-- Submit button with icon -->
+        <button type="submit">
+            <i class="fa-solid fa-location-arrow"></i> Optimize Route
+        </button>
+    </form>
+
+    <!-- Footer copyright -->
+    <div class="footer">
+        <p>&copy; 2025 Smart Bin Monitoring System</p>
+    </div>
+</div>
+
+</body>
+</html>
